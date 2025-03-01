@@ -24,7 +24,7 @@ public class MemberApiControllerV1 {
     // 특정 회원 조회
     @GetMapping("/members/{id}")
     public Member findMember(@PathVariable("id") Long id) {
-        return memberRepository.findOne(id);
+        return memberRepository.findOne(id)  ;
     }
 
     // 전체 회원 조회
