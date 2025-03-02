@@ -31,6 +31,10 @@ public class Member {
     @OneToMany(mappedBy = "member")
     List<Diary> diaries = new ArrayList<>();
 
+    @PrePersist
+    protected void onCreate() {
+        this.createDate = LocalDateTime.now();
+    }
 
 
 
