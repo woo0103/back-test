@@ -13,7 +13,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional
 public class MemberRepository {
-    @Autowired
     private final EntityManager em;
 
     // 회원 저장
@@ -23,7 +22,7 @@ public class MemberRepository {
     }
 
     // 특정 회원 조회
-    public Member findOne(Long id) {
+    public Member findById(Long id) {
         return em.find(Member.class, id);
     }
 
@@ -33,7 +32,24 @@ public class MemberRepository {
                 .getResultList();
     }
 
-    //
+    // 회원 삭제
+    public void delete(Member member) {
+        // 1. 엔티티가 영속 상태가 아니라면, 먼저 영속 상태로 만들어야 함.
+        Member deleteMember = em.find(Member.class, member.getId());  // 영속성 컨텍스트에서 조회
+        if (deleteMember != null) {
+            em.remove(deleteMember);  // 영속 상태인 엔티티 삭제
+        }
+    }
+
+    // 회원 삭제
+    public void deleteById(Long id) {
+        Member deleteMember = em.find(Member.class, id);
+        if (deleteMember != null) {
+            em.remove(deleteMember);  // 영속 상태인 엔티티 삭제
+        }
+    }
+
+
 
 
 }
