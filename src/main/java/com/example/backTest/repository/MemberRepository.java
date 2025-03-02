@@ -5,11 +5,13 @@ import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
+@Transactional
 public class MemberRepository {
     @Autowired
     private final EntityManager em;

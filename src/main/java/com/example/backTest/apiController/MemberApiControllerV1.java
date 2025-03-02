@@ -7,10 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,5 +34,11 @@ public class MemberApiControllerV1 {
     public List<Member> findMembers() {
 
         return memberRepository.findAll();
+    }
+
+    // 회원가입
+    @PostMapping("/members")
+    public Long joinMember(@RequestBody Member member) {
+        return memberRepository.save(member);
     }
 }
