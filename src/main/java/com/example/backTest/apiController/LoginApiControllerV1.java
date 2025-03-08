@@ -22,7 +22,7 @@ public class LoginApiControllerV1 {
 
     // 로그인
     @PostMapping("/login")
-    public void login(@RequestBody Member member, BindingResult bindingResult, HttpServletRequest request) {
+    public void login(@RequestBody Member member, BindingResult bindingResult, HttpServletRequest request, HttpServletResponse response) {
         String loginId = member.getLoginId();
         String password = member.getPassword();
 
@@ -31,6 +31,7 @@ public class LoginApiControllerV1 {
         // 인증 실패 시 에러 추가하고 리턴
         if (loginMember == null) {
             bindingResult.reject("login", "아이디, 비밀번호를 다시 입력해주세요");
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return;
         }
 
