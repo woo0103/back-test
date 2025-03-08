@@ -26,6 +26,14 @@ public class MemberRepository {
         return em.find(Member.class, id);
     }
 
+    // 로그인 아이디로 조회
+    public Member findByLoginId(String loginId) {
+        List<Member> member = em.createQuery("select m from Member m where m.loginId = :loginId", Member.class)
+                .setParameter("loginId", loginId)
+                .getResultList();
+        return member.isEmpty() ? null : member.get(0);
+    }
+
     // 전체 회원 조회
     public List<Member> findAll() {
         return em.createQuery("select m from Member m", Member.class)
