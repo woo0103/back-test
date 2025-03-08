@@ -14,19 +14,19 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/members")
 public class MemberApiControllerV1 {
 
     private final MemberService memberService;
 
     // 회원가입
-    @PostMapping("/members")
+    @PostMapping
     public Long joinMember(@RequestBody Member member) {
         return memberService.join(member);
     }
-    // 특정 회원 조회
 
-    @GetMapping("/members/{id}")
+    // 특정 회원 조회
+    @GetMapping("/{id}")
     public Member getMember(@PathVariable("id") Long id, HttpServletResponse response) {
         Member member = memberService.getMember(id);
         if (member == null) {
@@ -34,12 +34,18 @@ public class MemberApiControllerV1 {
         }
         return member;
     }
-    // 전체 회원 조회
 
-    @GetMapping("/members")
+    // 전체 회원 조회
+    @GetMapping
     public List<Member> getAllMembers() {
 
         return memberService.getAllMembers();
+    }
+
+    // 회원 삭제
+    @DeleteMapping("/{id}")
+    public void deleteMember(@PathVariable("id") Long id) {
+        memberService.deleteMember(id);
     }
 
 }
