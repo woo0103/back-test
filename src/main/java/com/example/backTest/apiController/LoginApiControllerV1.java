@@ -49,7 +49,8 @@ public class LoginApiControllerV1 {
         HttpSession session = request.getSession(false);
         // 세션 있으면
         if (session != null) {
-                session.invalidate();
+            session.invalidate();
+            log.info("logout: session invalidate");
         }
 
     }
