@@ -29,6 +29,11 @@ public class MemberService {
         return memberRepository.findById(id);
     }
 
+    public Member getMember(String loginId) {
+        return memberRepository.findByLoginId(loginId);
+    }
+
+
     // 회원 삭제 by id
     public void deleteMember(Long id) {
         memberRepository.deleteById(id);

@@ -19,6 +19,7 @@ public class Member {
 
     String name;
     String email;
+    String loginId;
     String password;
     String nickName;
     @Enumerated(EnumType.STRING)
